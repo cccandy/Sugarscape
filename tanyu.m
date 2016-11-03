@@ -1,4 +1,4 @@
-ne=1000;
+ne=100;
 mapkey=zeros(50,50);
 mapT1=zeros(50,50);
 %Map initialization
@@ -35,7 +35,7 @@ inChigh=((MyAreaC+viewer)>=50)*50+((MyAreaC+viewer)<50)*(MyAreaC+viewer);
 %make gene to vit
 Viewermap =mapT1((inRlow):(inRhigh),(inClow):(inChigh));
 %clearhere inRlow inRhigh inClow inChigh
-[rowV,colV] = find(Viewermap==max(max(Viewermap)));
+[rowV,colV] = find( Viewermap == max(max(Viewermap)));
 %make viewer map
 xt=abs(rowV-(viewer+1))+abs(colV-(viewer+1));
 mark_best=find(xt==min(xt));
