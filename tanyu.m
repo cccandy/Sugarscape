@@ -45,7 +45,7 @@ log_mapkey=zeros(mapsize,mapsize,mapval,ne);
 log_gene=zeros(pe_max,pe_selfppt,ne);
 %个人情报日志-5d
 %性能不足建议关闭
-log_selfinf=zeros(mapsize,mapsize,infkind,pe_max,ne);
+%log_selfinf=zeros(mapsize,mapsize,infkind,pe_max,ne);
 %人物情感日志-4d 
 log_emotion=zeros(pe_max,pe_max,relas,ne);
 
@@ -77,7 +77,7 @@ end
 %日志系统
 log_mapkey(:,:,:,nn)=mapkey;
 log_gene(:,:,nn)=gene;
-log_selfinf(:,:,:,:,nn)=selfinf;
+%log_selfinf(:,:,:,:,nn)=selfinf;
 log_emotion(:,:,:,nn)=emotion;
 %回合增益
 mapkey(30:45,5:20,2)=mapkey(30:45,5:20,2)+1;
