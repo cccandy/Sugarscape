@@ -1,89 +1,89 @@
+ï»¿
+ne=100; %æ€»å›åˆæ•°
 
-ne=100; %×Ü»ØºÏÊı
+mapsize=50;%åœ°å›¾è§„æ¨¡
+mapval=2; %èµ„æºå‚æ•°
 
-mapsize=50;%µØÍ¼¹æÄ£
-mapval=2; %×ÊÔ´²ÎÊı
+pe_num=250;%åˆå§‹äººæ•°
+pe_selfppt=5;%ä¸ªäººå±æ€§
+pe_max= 500; %é¢„è®¡æœ€å¤§äººå£è§„æ¨¡
 
-pe_num=250;%³õÊ¼ÈËÊı
-pe_selfppt=5;%¸öÈËÊôĞÔ
-pe_max= 500; %Ô¤¼Æ×î´óÈË¿Ú¹æÄ£
-
-infkind=2;%Çé±¨ÀàĞÍ
-relas=1;%¹ØÏµÖÖÀà
+infkind=2;%æƒ…æŠ¥ç±»å‹
+relas=1;%å…³ç³»ç§ç±»
 
 
 
-%³õÊ¼»¯Êı¾İ
-%³õÊ¼»¯×ÔÈ»µØÍ¼¿â-3d
+%åˆå§‹åŒ–æ•°æ®
+%åˆå§‹åŒ–è‡ªç„¶åœ°å›¾åº“-3d
 mapkey=zeros(mapsize,mapsize,mapval);
-%³õÊ¼»¯¸öÈËÊôĞÔ-2d
+%åˆå§‹åŒ–ä¸ªäººå±æ€§-2d
 gene=zeros(pe_max,pe_selfppt);
-%¿ªÆô¸öÈËÇé±¨µØÍ¼-4d
+%å¼€å¯ä¸ªäººæƒ…æŠ¥åœ°å›¾-4d
 selfinf=zeros(mapsize,mapsize,infkind,pe_max);
-%ÈËÎïÇé¸Ğ-3d boolean
-%ºáÁĞÎªÈËÎïid£¬×İÁĞÎª¶ÔÄ³ÈËÎïµÄ¹ØÏµ£¬zÁĞÎª¹ØÏµÖÖÀà
+%äººç‰©æƒ…æ„Ÿ-3d boolean
+%æ¨ªåˆ—ä¸ºäººç‰©idï¼Œçºµåˆ—ä¸ºå¯¹æŸäººç‰©çš„å…³ç³»ï¼Œzåˆ—ä¸ºå…³ç³»ç§ç±»
 emotion=zeros(pe_max,pe_max,relas);
 
 
 
-%¶¨Òå¸öÈËÊôĞÔ-2d --gene
-%1,2µØÀíÎ»ÖÃR/C 3,ÊÓÒ° 4£¬²Æ¸» 5£¬´æÔÚ
+%å®šä¹‰ä¸ªäººå±æ€§-2d --gene
+%1,2åœ°ç†ä½ç½®R/C 3,è§†é‡ 4ï¼Œè´¢å¯Œ 5ï¼Œå­˜åœ¨
 gene(1:pe_num,1:2)=round(1+rand(pe_num,2)*49);
 gene(1:pe_num,3)=round(1+rand*3);
 gene(1:pe_num,4)=20;
 gene(1:pe_num,5)=1;
-% ¿ªÆô×ÊÔ´µØÍ¼
+% å¼€å¯èµ„æºåœ°å›¾
 mapkey(30:45,5:20,2)=50;
 mapkey(35:40,10:15,2)=100;
 mapkey(:,:,2)=mapkey(:,:,2)+mapkey(:,:,2)';
-% ³õÊ¼»¯Î»ÖÃ
+% åˆå§‹åŒ–ä½ç½®
 
-%ÉèÖÃÈÕÖ¾ÎÄ¼ş
-%µØÍ¼ÈÕÖ¾ -4d
+%è®¾ç½®æ—¥å¿—æ–‡ä»¶
+%åœ°å›¾æ—¥å¿— -4d
 log_mapkey=zeros(mapsize,mapsize,mapval,ne);
-%¸öÈËÊôĞÔÈÕÖ¾-3d
+%ä¸ªäººå±æ€§æ—¥å¿—-3d
 log_gene=zeros(pe_max,pe_selfppt,ne);
-%¸öÈËÇé±¨ÈÕÖ¾-5d
-%ĞÔÄÜ²»×ã½¨Òé¹Ø±Õ
+%ä¸ªäººæƒ…æŠ¥æ—¥å¿—-5d
+%æ€§èƒ½ä¸è¶³å»ºè®®å…³é—­
 %log_selfinf=zeros(mapsize,mapsize,infkind,pe_max,ne);
-%ÈËÎïÇé¸ĞÈÕÖ¾-4d 
+%äººç‰©æƒ…æ„Ÿæ—¥å¿—-4d 
 log_emotion=zeros(pe_max,pe_max,relas,ne);
 
-%µÚÒ»»ØºÏ¼ÇÂ¼
+%ç¬¬ä¸€å›åˆè®°å½•
 log_mapkey(:,:,:,1)=mapkey;
 log_gene(:,:,1)=gene;
 log_selfinf(:,:,:,:,1)=selfinf;
 log_emotion(:,:,:,1)=emotion;
 
-%¿ªÊ¼Ä£¿é
+%å¼€å§‹æ¨¡å—
 for nn=2:ne
 for i=1:250
-    %Ğ£ÑéÈËÎïÊÇ·ñËÀÍö
+    %æ ¡éªŒäººç‰©æ˜¯å¦æ­»äº¡
     if gene(i,5)==0
         continue
     end
     
 selfinf(:,:,2,i)=inf_view(gene(i,3),gene(i,1),gene(i,2),mapkey(:,:,2),selfinf(:,:,2,i));
-%¸üĞÂselfinf Êı¾İ
+%æ›´æ–°selfinf æ•°æ®
 [lastgoalR,lastgoalC,xt] = searchmap( selfinf(:,:,2,i),gene(i,1),gene(i,2));
 %lastgoal-set
 moving = T_move(i,nn,gene(i,1),gene(i,2),lastgoalR,lastgoalC);
-%ÒÆ¶¯·½Ê½
+%ç§»åŠ¨æ–¹å¼
 gene(i,1:2)=moving;
 end
-   %»ØºÏÄ©Î²Í³Ò»½áËã
+   %å›åˆæœ«å°¾ç»Ÿä¸€ç»“ç®—
 [mapkey,gene]=round_ac(mapkey,gene,mapsize);
 
-%ÈÕÖ¾ÏµÍ³
+%æ—¥å¿—ç³»ç»Ÿ
 log_mapkey(:,:,:,nn)=mapkey;
 log_gene(:,:,nn)=gene;
 %log_selfinf(:,:,:,:,nn)=selfinf;
 log_emotion(:,:,:,nn)=emotion;
-%»ØºÏÔöÒæ
+%å›åˆå¢ç›Š
 mapkey(30:45,5:20,2)=mapkey(30:45,5:20,2)+1;
 mapkey(35:40,10:15,2)=mapkey(35:40,10:15,2)+2;
 end
-%ÇåÀíÎŞ¹Ø±äÁ¿
+%æ¸…ç†æ— å…³å˜é‡
 
 
 
